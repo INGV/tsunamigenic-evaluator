@@ -21,12 +21,12 @@ Its result can be Graphically formatted in the following  table
 
 ## Quickstart
 ### Get Docker image
-To obtain *ttime* docker image, you have two options:
+To obtain *tsunamigenic-evaluator* docker image, you have two options:
 
 #### 1) Get built image from DockerHub (*preferred*)
 Get the last built image from DockerHub repository:
 ```sh
-docker pull ingv/ttime:latest
+docker pull ingv/tsunamigenic-evaluator:latest
 ```
 
 #### 2) Build by yourself
