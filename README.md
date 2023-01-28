@@ -1,25 +1,12 @@
+[![License](https://img.shields.io/github/license/INGV/tsunamigenic-evaluator.svg)](https://github.com/INGV/tsunamigenic-evaluator/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/INGV/tsunamigenic-evaluator.svg)](https://github.com/INGV/tsunamigenic-evaluator/issues)
 
+[![Docker build](https://img.shields.io/badge/docker%20build-from%20CI-yellow)](https://hub.docker.com/r/ingv/tsunamigenic-evaluator)
+![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/ingv/tsunamigenic-evaluator?sort=semver)
+![Docker Pulls](https://img.shields.io/docker/pulls/ingv/tsunamigenic-evaluator)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [tsunamigenic evaluator](#tsunamigenic-evaluator)
-  - [Introduction](#introduction)
-  - [input](#input)
-  - [output](#output)
-  - [Usage](#usage)
-    - [Docker image](#docker-image)
-      - [Option  one. Get the last built image from Docker Hub repository](#option--one-get-the-last-built-image-from-docker-hub-repository)
-      - [Option  two. Build the image by yourself](#option--two-build-the-image-by-yourself)
-    - [Run Docker](#run-docker)
-    - [Test the evaluator as a stand alone script](#test-the-evaluator-as-a-stand-alone-script)
-    - [call REST service](#call-rest-service)
-      - [with curl:](#with-curl)
-      - [with swagger](#with-swagger)
-  - [Authors](#authors)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+[![CI](https://github.com/INGV/tsunamigenic-evaluator/actions/workflows/docker-image.yml/badge.svg)](https://github.com/INGV/tsunamigenic-evaluator/actions)
+[![GitHub](https://img.shields.io/static/v1?label=GitHub&message=Link%20to%20repository&color=blueviolet)](https://github.com/INGV/tsunamigenic-evaluator)
 
 
 
@@ -266,7 +253,13 @@ from web browser ...
 http://[HOST]:[PORT]
 ```
 
+## Contribute
+Thanks to your contributions!
 
+Here is a list of users who already contributed to this repository: \
+<a href="https://github.com/ingv/tsunamigenic-evaluator/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ingv/tsunamigenic-evaluator" />
+</a>
 
 
 
