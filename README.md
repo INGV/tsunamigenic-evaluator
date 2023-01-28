@@ -19,15 +19,49 @@ Its result can be Graphically formatted in the following  table
 
 ![sample_table](./assets/figures/sample_table.png)
 
+## Quickstart
+### Get Docker image
+To obtain *ttime* docker image, you have two options:
 
+#### 1) Get built image from DockerHub (*preferred*)
+Get the last built image from DockerHub repository:
+```sh
+docker pull ingv/ttime:latest
+```
 
-## input
+#### 2) Build by yourself
+Clone the git repositry:
+```sh
+git clone https://github.com/INGV/tsunamigenic-evaluator.git
+cd tsunamigenic-evaluator
+```
+build the image:
+```sh
+docker build --tag ingv/tsunamigenic-evaluator . 
+```
 
+in case of errors, try:
+```sh
+docker build --no-cache --pull --tag ingv/tsunamigenic-evaluator . 
+```
+
+### Run as a service
+run the container in daemon (`-d`) mode:
+
+```sh
+docker run -it --name flask_tsunamigenic_evaluator -p 8383:5000 -d --user $(id -u):$(id -g) --rm ingv/tsunamigenic_evaluator
+docker exec -i flask_tsunamigenic_evaluator tail -f /opt/log/tsunamigenic_evaluator.log
+```
+
+Then test access to: http://localhost:8383/
+
+## Input/Output format
+### Input
 The input is a json file with the event parameters like the following example. All the keys are present in the `monitor.xml` file of Early-est
 
-
-```
-{"event_id"   : "123455",
+```json
+{       
+        "event_id"   : "123455",
 	"origin_id"   : "12345678",
 	"lat"         : 37.19,
 	"lon"         : 14.77,
@@ -45,24 +79,17 @@ The input is a json file with the event parameters like the following example. A
 	"T0_nr"       : 9}
 ```
 
-## output
-
-The table has two sections, plus one present only in `Early-Est 1.2.7`. Currently the third section is not yet implemented.
-
+### output
+The table has two sections, plus one present only in `Early-Est 1.2.7`. Currently the third section is not yet implemented. \
 The two sections are:
-
 * `Discriminants`
 * `Decision_table`
 
-The "nested dictionaries" that contain information to build the table, have the same names as the table sections.
-
-As regards the second section (and the third, when it will be done) we specify that the procedure is a test phase.
-
+The "nested dictionaries" that contain information to build the table, have the same names as the table sections. \
+As regards the second section (and the third, when it will be done) we specify that the procedure is a test phase. \
 As regards the second section, each element on the vertical axis correspond to a dictionary key to which is referenced one three-valued string that are the valus of x axis. 
 
-
-
-```
+```json
 {
     "origin_id": "12345678",
     "event_id": "123455",
@@ -181,76 +208,28 @@ As regards the second section, each element on the vertical axis correspond to a
 }
 ```
 
-
-
-## Usage
-Make sure you have `docker` installed
-
-### Docker image
-
-#### Option  one. Get the last built image from Docker Hub repository
-
+### Example using `curl`:
 ```
-docker pull ingv/tsunamigenic_evaluator:latest
+curl -X POST http://localhost:8383/api/evaluate \
+-H 'Content-Type: application/json' \
+-d "{\"event_id\":\"123455\",\"origin_id\":\"12345678\",\"lat\":37.19,\"lon\":14.77,\"depth\":10,\"minHorUnc\":7,\"maxHorUnc\":8,\"azMaxHorUnc\":156,\"mag\":\"None\",\"nr_mag\":0,\"T50Ex\":0.5,\"T50Ex_nr\":9,\"Td\":\"None\",\"Td_nr\":0,\"T0\":7.1,\"T0_nr\":9}" | json_pp
 ```
 
-#### Option  two. Build the image by yourself
+## Test the evaluator as a stand alone script
 
-```
-git clone https://gitlab+deploy-token-152:6dzqX3xdcuUYo_Lcupvx@gitlab.rm.ingv.it/docker/tsunamigenic_evaluator.git
-cd tsunamigenic_evaluator
-docker build --tag ingv/tsunamigenic_evaluator .
-```
-
-
-
-### Run Docker 
-
-from inside `tsunamigenic_evaluator` folder ...
-
-```
-docker run -it --name flask_tsunamigenic_evaluator -p [PORT]:5000 -d --user $(id -u):$(id -g) --rm ingv/tsunamigenic_evaluator
-docker exec -i flask_tsunamigenic_evaluator tail -f /opt/log/tsunamigenic_evaluator.log
-```
-
-
-
-### Test the evaluator as a stand alone script
-
-If you have cloned the project, you can check the evaluator engine from command line
-
-To do this you need python3.x installed on your machine and also some python libraries:
-
-```
-cd tsunamigenic_evaluator
+If you have cloned the project, you can check the evaluator engine from command line. \
+To do this you need *python3.x* installed on your machine and also some python libraries:
+```sh
 pip install -r requirements.txt
 python main/api/query.py --help
 ```
 
 Here is some use  examples:
 
-```
+```sh
 python main/api/queries.py 
 python main/api/queries.py -f <input-file.json>
 python main/api/queries.py -d "{\"event_id\":\"123455\",\"origin_id\":\"12345678\",\"lat\":37.19,\"lon\":14.77,\"depth\":10,\"minHorUnc\":7,\"maxHorUnc\":8,\"azMaxHorUnc\":156,\"mag\":\"None\",\"nr_mag\":0,\"T50Ex\":0.5,\"T50Ex_nr\":9,\"Td\":\"None\",\"Td_nr\":0,\"T0\":7.1,\"T0_nr\":9}"
-```
-
-### call REST service
-
-#### with curl:
-
-```
-curl -X POST http://[HOST]:[PORT]/api/evaluate \
--H 'Content-Type: application/json' \
--d "{\"event_id\":\"123455\",\"origin_id\":\"12345678\",\"lat\":37.19,\"lon\":14.77,\"depth\":10,\"minHorUnc\":7,\"maxHorUnc\":8,\"azMaxHorUnc\":156,\"mag\":\"None\",\"nr_mag\":0,\"T50Ex\":0.5,\"T50Ex_nr\":9,\"Td\":\"None\",\"Td_nr\":0,\"T0\":7.1,\"T0_nr\":9}" | json_pp
-```
-
-#### with swagger
-
-from web browser ...
-
-```
-http://[HOST]:[PORT]
 ```
 
 ## Contribute
@@ -261,10 +240,9 @@ Here is a list of users who already contributed to this repository: \
   <img src="https://contrib.rocks/image?repo=ingv/tsunamigenic-evaluator" />
 </a>
 
-
-
-
 ## Authors
-(c) 2021 Sergio Bruni sergio.bruni[at]ingv.it, Fabrizio Bernardi fabrizio.bernardi[at]ingv.it, Valentino Lauciani valentino.lauciani[at]ingv.it
+(c) 2023 Sergio Bruni sergio.bruni[at]ingv.it \
+(c) 2023 Fabrizio Bernardi fabrizio.bernardi[at]ingv.it \
+(c) 2023 Valentino Lauciani valentino.lauciani[at]ingv.it
 
 Istituto Nazionale di Geofisica e Vulcanologia, Italia
