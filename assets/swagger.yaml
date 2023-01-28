@@ -1,0 +1,271 @@
+openapi: 3.0.0
+info:
+  title: tsunamigenic evaluator
+  description: tsunamigenic evaluator service API
+  contact:
+    name: Sergio Bruni
+    email: sergio.bruni@ingv.it
+  version: 1.0.0
+servers:
+  - url: 'http://docker.int.ingv.it:8092'
+  - url: 'http://localhost:8888'
+paths:
+  /api/evaluate:
+    summary: 'evaluates the tsunamigenic traits of an event'
+    post:
+      requestBody:
+        description: event data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/event_data'
+      responses:
+        '200':
+          description: Succesfull Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success_result'
+        '500':
+          description: Fail Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_result'
+
+components:
+  schemas:
+    Subduction_geometry:
+      type: object
+      properties:
+        zone:
+          type: string
+          example: "none or not available"
+        Slab_depth_at_epicenter:
+          type: string
+          example: "n/a"
+
+    plate_boundary:
+          type: array
+          items:
+            type: [string, number]
+          minItems: 4
+          maxItems: 4
+          example: [490.0, "AS-EU", "continental convergent boundary", "CCB"]
+
+    Discriminants:
+      type: object
+      properties:
+        T50Ex:
+          type: number
+          example: 0.5
+        T50Ex_nr:
+          type: number
+          example: 9
+        TdT50Ex:
+          type: number
+          example: null
+        TdT50Ex_nr:
+          type: number
+          example: null
+        Td:
+          type: number
+          example: 9
+        Td_nr:
+          type: number
+          example: 0
+        T0:
+          type: number
+          example: 7.1
+        T0_nr:
+          type: number
+          example: 9
+        Subduction_geometry:
+          type: object
+          $ref: '#/components/schemas/Subduction_geometry'
+        Closest_plate_boundaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/plate_boundary'
+
+    Decision_table:
+      type: object
+      properties:
+        event_type:
+          type: array
+          items:
+            type: string
+          example: ["Subduction Zone", "Other Thrust/Normal", "Strike-slip"]
+        Compatible_close_plate_boundary_text":
+          type: array
+          items:
+            type: string
+            example: ["YES (60km)", "No", "YES (60km)"]
+        Compatible_close_plate_boundary_color":
+          type: array
+          items:
+            type: string
+            example: ["RED", "GREEN", "YELLOW"]
+        prob_underwater_text":
+          type: array
+          items:
+            type: string
+            example: ["<1%"]
+        prob_underwater_color":
+          type: array
+          items:
+            type: string
+            example: ["GREEN"]
+        TdT50Ex_color":
+          type: array
+          items:
+            type: string
+            example: ["LTGREEN"]
+        TdT50Ex_value":
+          type: array
+          items:
+            type: string
+            example: ["-"]
+        tdt0_value":
+          type: array
+          items:
+            type: string
+            example: ["-"]
+        tdt0_color":
+          type: array
+          items:
+            type: string
+            example: ["GREY"]
+        Mwp_magnitude_text":
+          type: array
+          items:
+            type: string
+            example: ["-"]
+        Mwp_magnitude_color":
+          type: array
+          items:
+            type: string
+            example: ["LTGREEN"]
+        Hypocenter_depth_text":
+          type: string
+          example: "10 [km]"
+        Hypocenter_depth_color":
+          type: array
+          items:
+            type: string
+            example: ["RED"]
+        slab_depth_text":
+          type: array
+          items:
+            type: string
+            example: ["n/a"]
+        slab_depth_color":
+          type: array
+          items:
+            type: string
+            example: ["GREY"]
+
+    OutputTableData:
+      type: object
+      properties:
+        origin_id:
+          type: string
+          example: "12345678"
+        event_id:
+          type: string
+          example: "123455"
+        latitude:
+          type: number
+          example: 37.19
+        longitude:
+          type: number
+          example: 14.77
+        depth:
+          type: number
+          example: 10
+        Discriminants:
+          type: object
+          $ref: '#/components/schemas/Discriminants'
+        Decision_table:
+          type: object
+          $ref: '#/components/schemas/Decision_table'
+
+    success_result:
+      type: object
+      properties:
+        error:
+            type: string
+            example: null
+        detail:
+          type: string
+          example: null
+        data:
+          type: object
+          $ref: '#/components/schemas/OutputTableData'
+
+    error_result:
+      type: object
+      properties:
+        error:
+            type: string
+            enum:
+              - MISSING_PARAMETER
+              - PARAMETER_VALUE_NOT_VALID
+              - GENERIC_ERROR
+              - UNEXPECTED_ERROR
+              - PARAMETER_VALUE_NOT_VALID
+        detail:
+          type: string
+          example: error details
+    event_data:
+      type: object
+      properties:
+        event_id:
+          type: string
+          example: "123455"
+        origin_id:
+          type: string
+          example: "12345678"
+        lat:
+          type: number
+          example: 37.19
+        lon:
+          type: number
+          example: 14.77
+        depth:
+          type: number
+          example: 10
+        minHorUnc:
+          type: integer
+          example: 7
+        maxHorUnc:
+          type: integer
+          example: 8
+        azMaxHorUnc:
+          type: integer
+          example: 156
+        mag:
+          type: string
+          example: "None"
+        nr_mag:
+          type: integer
+          example: 0
+        T50Ex:
+          type: number
+          example: 0.5
+        T50Ex_nr:
+          type: number
+          example: 9
+        Td:
+          type: number
+          example: "None"
+        Td_nr:
+          type: integer
+          example: 0
+        T0:
+          type: number
+          example: 7.1
+        T0_nr:
+          type: integer
+          example: 9
