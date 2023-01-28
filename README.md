@@ -60,23 +60,24 @@ Then test access to: http://localhost:8383/
 The input is a json file with the event parameters like the following example. All the keys are present in the `monitor.xml` file of Early-est
 
 ```json
-{       
-        "event_id"   : "123455",
-	"origin_id"   : "12345678",
-	"lat"         : 37.19,
-	"lon"         : 14.77,
-	"depth"       : 10,
-	"minHorUnc"   : 7,
-	"maxHorUnc"   : 8,
-	"azMaxHorUnc" : 156,
-	"mag"         : "None",
-	"nr_mag"      : 0,
-	"T50Ex"       : 0.5,
-	"T50Ex_nr"    : 9,
-	"Td"          : "None",
-	"Td_nr"       : 0,
-	"T0"          : 7.1,
-	"T0_nr"       : 9}
+{
+    "event_id": "123455",
+    "origin_id": "12345678",
+    "lat": 37.19,
+    "lon": 14.77,
+    "depth": 10,
+    "minHorUnc": 7,
+    "maxHorUnc": 8,
+    "azMaxHorUnc": 156,
+    "mag": "None",
+    "nr_mag": 0,
+    "T50Ex": 0.5,
+    "T50Ex_nr": 9,
+    "Td": "None",
+    "Td_nr": 0,
+    "T0": 7.1,
+    "T0_nr": 9
+}
 ```
 
 ### output
