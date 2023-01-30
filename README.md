@@ -49,13 +49,13 @@ docker build --no-cache --pull --tag ingv/tsunamigenic-evaluator .
 run the container in daemon (`-d`) mode:
 
 ```sh
-docker run -it --name flask_tsunamigenic_evaluator -p 8383:5000 -d --user $(id -u):$(id -g) --rm ingv/tsunamigenic_evaluator
+docker run -it --name flask-tsunamigenic-evaluator -p 8383:5000 -d --user $(id -u):$(id -g) --rm ingv/tsunamigenic-evaluator
 ```
 
 to show the log:
 
 ```
-docker exec -i flask_tsunamigenic_evaluator tail -f /opt/log/tsunamigenic_evaluator.log
+docker exec -i flask-tsunamigenic-evaluator tail -f /opt/log/tsunamigenic-evaluator.log
 ```
 
 Then test access to: http://localhost:8383/

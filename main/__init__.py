@@ -37,7 +37,7 @@ def create_logger(app_settings):
     if not os.path.isdir(log_folder):
         os.makedirs(log_folder, 493)
 
-    log_file_name = os.path.join(log_folder, 'tsunamigenic_evaluator.log')
+    log_file_name = os.path.join(log_folder, 'tsunamigenic-evaluator.log')
     f_handler = logging.handlers.RotatingFileHandler(log_file_name, maxBytes=1000000, backupCount=10)
     f_handler.setLevel(numeric_level)
     f_handler.setFormatter(formatter)
