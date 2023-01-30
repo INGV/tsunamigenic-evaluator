@@ -113,8 +113,8 @@ The two sections are:
 * `Discriminants`
 * `Decision_table`
 
-The "nested dictionaries" that contain information to build the table, have the same names as the table sections.
-As regards the second section (and the third, when it will be done) we specify that the procedure is a test phase.
+The "nested dictionaries" that contain information to build the table, have the same names as the table sections. \
+As regards the second section (and the third, when it will be done) we specify that the procedure is a test phase. \
 As regards the second section, each element on the vertical axis correspond to a dictionary key to which is referenced one three-valued string that are the valus of x axis. 
 
 ```json
@@ -253,7 +253,6 @@ python main/api/queries.py --help
 ```
 
 Here is some examples of launch:
-
 ```sh
 python main/api/queries.py 
 python main/api/queries.py -f <input-file.json>
@@ -263,14 +262,14 @@ python main/api/queries.py -d "{\"event_id\":\"123455\",\"origin_id\":\"12345678
 ## Contribute
 Thanks to your contributions!
 
-Here is a list of users who already contributed to this repository: 
+Here is a list of users who already contributed to this repository: \
 <a href="https://github.com/ingv/tsunamigenic-evaluator/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ingv/tsunamigenic-evaluator" />
 </a>
 
 ## Authors
-(c) 2023 Sergio Bruni sergio.bruni[at]ingv.it
-(c) 2023 Fabrizio Bernardi fabrizio.bernardi[at]ingv.it
+(c) 2023 Sergio Bruni sergio.bruni[at]ingv.it \
+(c) 2023 Fabrizio Bernardi fabrizio.bernardi[at]ingv.it \
 (c) 2023 Valentino Lauciani valentino.lauciani[at]ingv.it
 
 Istituto Nazionale di Geofisica e Vulcanologia, Italia
