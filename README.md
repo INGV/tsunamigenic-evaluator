@@ -50,6 +50,11 @@ run the container in daemon (`-d`) mode:
 
 ```sh
 docker run -it --name flask_tsunamigenic_evaluator -p 8383:5000 -d --user $(id -u):$(id -g) --rm ingv/tsunamigenic_evaluator
+```
+
+to show the log:
+
+```
 docker exec -i flask_tsunamigenic_evaluator tail -f /opt/log/tsunamigenic_evaluator.log
 ```
 
@@ -81,13 +86,14 @@ The input is a json file with the event parameters like the following example. A
 ```
 
 ### output
-The table has two sections, plus one present only in `Early-Est 1.2.7`. Currently the third section is not yet implemented. \
+The table has two sections, plus one present only in `Early-Est 1.2.7`. Currently the third section is not yet implemented. 
 The two sections are:
+
 * `Discriminants`
 * `Decision_table`
 
-The "nested dictionaries" that contain information to build the table, have the same names as the table sections. \
-As regards the second section (and the third, when it will be done) we specify that the procedure is a test phase. \
+The "nested dictionaries" that contain information to build the table, have the same names as the table sections.
+As regards the second section (and the third, when it will be done) we specify that the procedure is a test phase.
 As regards the second section, each element on the vertical axis correspond to a dictionary key to which is referenced one three-valued string that are the valus of x axis. 
 
 ```json
@@ -222,10 +228,10 @@ If you have cloned the project, you can check the evaluator engine from command 
 To do this you need *python3.x* installed on your machine and also some python libraries:
 ```sh
 pip install -r requirements.txt
-python main/api/query.py --help
+python main/api/queries.py --help
 ```
 
-Here is some use  examples:
+Here is some examples of launch:
 
 ```sh
 python main/api/queries.py 
@@ -236,14 +242,14 @@ python main/api/queries.py -d "{\"event_id\":\"123455\",\"origin_id\":\"12345678
 ## Contribute
 Thanks to your contributions!
 
-Here is a list of users who already contributed to this repository: \
+Here is a list of users who already contributed to this repository: 
 <a href="https://github.com/ingv/tsunamigenic-evaluator/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ingv/tsunamigenic-evaluator" />
 </a>
 
 ## Authors
-(c) 2023 Sergio Bruni sergio.bruni[at]ingv.it \
-(c) 2023 Fabrizio Bernardi fabrizio.bernardi[at]ingv.it \
+(c) 2023 Sergio Bruni sergio.bruni[at]ingv.it
+(c) 2023 Fabrizio Bernardi fabrizio.bernardi[at]ingv.it
 (c) 2023 Valentino Lauciani valentino.lauciani[at]ingv.it
 
 Istituto Nazionale di Geofisica e Vulcanologia, Italia

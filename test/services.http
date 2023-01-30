@@ -19,3 +19,26 @@ Content-Type: application/json
 		"T0"          : 7.1,
 		"T0_nr"       : 9
 	}
+
+###
+POST http://localhost:4300/api/evaluate
+Content-Type: application/json
+
+{
+  "event_id": "string",
+  "origin_id": "string",
+  "lat": 0,
+  "lon": 0,
+  "depth": 0,
+  "minHorUnc": 0,
+  "maxHorUnc": 0,
+  "azMaxHorUnc": 0,
+  "mag": "string",
+  "nr_mag": 0,
+  "T50Ex": 0,
+  "T50Ex_nr": 0,
+  "Td": 0,
+  "Td_nr": 0,
+  "T0": 0,
+  "T0_nr": 0
+}

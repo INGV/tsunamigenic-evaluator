@@ -1,8 +1,10 @@
+import os
+if __name__ == '__main__':
+    os.environ["LOG_SEVERITY"] = "ERROR"
 import sys
 sys.path.append('.')
 from contextlib import closing
 import json
-import os
 import simplejson
 from datetime import date, time, datetime, timedelta
 # from flask_api import status as http_status_code
@@ -357,6 +359,7 @@ class Queries(object):
                                                          MWP_YELLOW_CUTOFF,
                                                          "LTGREEN",
                                                          flag_config__event_info__tsunami_decision_table_colors_show)
+                mag_text = '-'
             else:
                 mag_color = 'LTGREEN'
                 mag_text = '-'
@@ -451,13 +454,14 @@ if __name__ == '__main__':
     import sys
     sys.path.append('.')
 
-    os.environ["LOG_SEVERITY"] = "ERROR"
+    #os.environ["LOG_SEVERITY"] = "ERROR"
     #from main import create_logger
     from settings import TestingConfig
     import argparse
     import main
 
     main.create_logger(TestingConfig)
+
     from main import logger
 
     parser = argparse.ArgumentParser(description='tsunamigenic evaluator', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -466,14 +470,14 @@ if __name__ == '__main__':
     group.add_argument('-d', '--json_data', help='input json formatted data')
     args = parser.parse_args()
 
-    if args.json_data_file:
+    if args.json_data:
+        data = json.loads(args.json_data)
+    else:
         if not os.path.isfile(args.json_data_file):
             print (f"file {args.json_data_file} do not exist")
 
         with open (args.json_data_file) as f:
             data = json.load(f)
-    else:
-        data = json.loads(args.json_data)
 
     queries = Queries()
     data, ret_status = queries.tsunamigenic_evaluation(data)
