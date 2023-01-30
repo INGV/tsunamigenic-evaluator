@@ -1,3 +1,24 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [tsunamigenic evaluator](#tsunamigenic-evaluator)
+  - [Introduction](#introduction)
+  - [Quickstart](#quickstart)
+    - [Get Docker image](#get-docker-image)
+      - [1) Get built image from DockerHub (*preferred*)](#1-get-built-image-from-dockerhub-preferred)
+      - [2) Build by yourself](#2-build-by-yourself)
+    - [Run as a service](#run-as-a-service)
+  - [Input/Output format](#inputoutput-format)
+    - [Input](#input)
+    - [output](#output)
+    - [Example using `curl`:](#example-using-curl)
+  - [Test the evaluator as a stand alone script](#test-the-evaluator-as-a-stand-alone-script)
+  - [Contribute](#contribute)
+  - [Authors](#authors)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 [![License](https://img.shields.io/github/license/INGV/tsunamigenic-evaluator.svg)](https://github.com/INGV/tsunamigenic-evaluator/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/INGV/tsunamigenic-evaluator.svg)](https://github.com/INGV/tsunamigenic-evaluator/issues)
 
