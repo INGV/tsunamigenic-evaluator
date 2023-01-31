@@ -6,9 +6,6 @@ info:
     name: Sergio Bruni
     email: sergio.bruni@ingv.it
   version: 1.0.0
-servers:
-  - url: 'http://docker.int.ingv.it:8092'
-  - url: 'http://localhost:8888'
 paths:
   /api/evaluate:
     summary: 'evaluates the tsunamigenic traits of an event'
